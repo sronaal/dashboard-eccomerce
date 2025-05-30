@@ -12,7 +12,7 @@ import { BiExit } from "react-icons/bi";
 
 function Sidebar() {
     return (
-        <div className='xl:h-[100vh] overflow-y-scroll scroll-hidden  fixed xl:static w-[80%] xl:w-full md:w-[40%] h-full  top-0  p-4 flex flex-col justify-baseline z-50 bg-gray-100 '>
+        <div className='xl:h-[100vh] overflow-y-scroll scroll-hidden   fixed xl:static w-[80%] xl:w-full md:w-[40%] h-full   top-0   p-4 flex flex-col justify-baseline z-50 bg-gray-100 '>
 
             <h1 className='uppercase font-bold tracking-[4px] text-center mb-10'>Admin<span className='text-4xl text-[#00CC00]'>.</span></h1>
 
