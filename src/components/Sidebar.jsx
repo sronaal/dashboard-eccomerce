@@ -36,20 +36,20 @@ function Sidebar() {
                     </Link>
                 </li>
                 <li>
-                    <Link className="flex items-center text-sm gap-4 py-2 px-4 rounded-lg hover:bg-[#aed3ae] font-semibold  transition-colors">
+                    <Link to='/clientes' className="flex items-center text-sm gap-4 py-2 px-4 rounded-lg hover:bg-[#aed3ae] font-semibold  transition-colors">
                         <BiUser className="text-[#00CC00] w-5 h-5" />
                         Clientes
                     </Link>
                 </li>
                 <li>
-                    <Link className="flex items-center text-sm gap-4 py-2 px-4 rounded-lg hover:bg-[#aed3ae] font-semibold  transition-colors">
+                    <Link to='/analisis' className="flex items-center text-sm gap-4 py-2 px-4 rounded-lg hover:bg-[#aed3ae] font-semibold  transition-colors">
                         <BiBarChartSquare className="text-[#00CC00] w-5 h-5" />
                         Analitica
                     </Link>
                 </li>
             </ul>
             <nav>
-                <Link className="flex items-center text-sm gap-4 py-2 px-4 rounded-lg hover:bg-[#aed3ae] transition-colors">
+                <Link  className="flex items-center text-sm gap-4 py-2 px-4 rounded-lg hover:bg-[#aed3ae] transition-colors">
                     <BiExit className="text-[#00CC00] w-5 h-5" />
                     Cerrar sesión
                 </Link>
