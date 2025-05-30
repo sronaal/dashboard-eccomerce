@@ -1,6 +1,9 @@
-import React from 'react'
+import React from "react";
+import RowTable from "./RowTable";
 
-export function TablaProducts({ products, title }) {
+export function TablaProducts({ products = [], title }) {
+  console.log(products);
+
   return (
     <div class="overflow-x-auto overflow-y-auto max-h-80">
       {title}
@@ -23,54 +26,19 @@ export function TablaProducts({ products, title }) {
           </tr>
         </thead>
         <tbody>
-          <tr class="bg-white text-gray-900 border-1 border-gray-400 ">
-            <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap">
-              Apple MacBook Pro 17"
-            </th>
-            <td class="px-6 py-4">
-              1
-            </td>
-            <td class="px-6 py-4">
-              $2999
-            </td>
-            <td class="px-6 py-4">
-              3
-            </td>
-          </tr>
-          <tr class="bg-white text-gray-900 border-1 border-gray-400 ">
-            <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap">
-              Apple MacBook Pro 17"
-            </th>
-            <td class="px-6 py-4">
-              1
-            </td>
-            <td class="px-6 py-4">
-              $2999
-            </td>
-            <td class="px-6 py-4">
-              3
-            </td>
-          </tr>
-          <tr class="bg-white text-gray-900 border-1 border-gray-400 ">
-            <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap">
-              Apple MacBook Pro 17"
-            </th>
-            <td class="px-6 py-4">
-              1
-            </td>
-            <td class="px-6 py-4">
-              $2999
-            </td>
-            <td class="px-6 py-4">
-              3
-            </td>
-          </tr>
-
-
+          {!Array.isArray(products) ? (
+            <tr>
+              <td colSpan="4">No hay productos</td>
+            </tr>
+          ) : (
+            products.map((product,index) => (
+              <RowTable key={index} {...product} />
+            ))
+          )}
         </tbody>
       </table>
     </div>
-  )
+  );
 }
 
-export default TablaProducts
+export default TablaProducts;

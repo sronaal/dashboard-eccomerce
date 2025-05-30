@@ -1,14 +1,33 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import TablaProducts from "../../components/TablaProducts";
+import { obtenerProducts } from "../../services/ProductsService";
+
 function Productos() {
 
   const [activeTab, setActiveTab] = useState(0)
 
+  const [products, setProducts] = useState([])
+  
   const cambiarTab = (pestaña) => {
 
     setActiveTab(pestaña)
   }
+
+
+  useEffect(() => {
+    
+    obtenerProducts()
+    .then(({ data }) => {
+      setProducts(data)
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+
+  },[])
+
+
 
   return (
     <>
@@ -40,9 +59,9 @@ function Productos() {
 
           </ul>
           {
-            activeTab === 0 && <TablaProducts title="Todos los productos"/>  || 
-            activeTab === 1 && <TablaProducts title="Productos activos"/> || 
-            activeTab === 2 && <TablaProducts title="Productos Inactivos"/>
+            activeTab === 0 && <TablaProducts products={products} title="Todos los productos"/>  || 
+            activeTab === 1 && <TablaProducts  products={products} title="Productos activos"/> || 
+            activeTab === 2 && <TablaProducts  products={products} title="Productos Inactivos"/>
           }
 
 
