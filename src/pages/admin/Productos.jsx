@@ -1,31 +1,30 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect, } from "react";
 import { Link } from "react-router-dom";
 import TablaProducts from "../../components/TablaProducts";
 import { obtenerProducts } from "../../services/ProductsService";
+import ModalProduct from "../../components/ModalProduct";
 
 function Productos() {
 
   const [activeTab, setActiveTab] = useState(0)
-
+  const [openModal, setOpenModal] = useState(false)
   const [products, setProducts] = useState([])
-  
+
+  useEffect(() => {
+
+    obtenerProducts()
+      .then(({ data }) => {
+        setProducts(data)
+      })
+      .catch(() => console.log)
+  }, [])
+
+
   const cambiarTab = (pestaña) => {
 
     setActiveTab(pestaña)
   }
 
-
-  useEffect(() => {
-    
-    obtenerProducts()
-    .then(({ data }) => {
-      setProducts(data)
-    })
-    .catch((error) => {
-      console.log(error)
-    })
-
-  },[])
 
 
 
@@ -35,9 +34,9 @@ function Productos() {
         <h1 class="text-3xl  font-bold tracking-tight text-gray-900">
           Productos
         </h1>
-        <Link className="w-39 bg-green-500 p-3 text-center text-[15px] rounded-lg hover:bg-[#00CC00] text-white">
+        <button onClick={() => setOpenModal(true)} className="w-39 bg-green-500 p-3 text-center text-[15px] rounded-lg hover:bg-[#00CC00] cursor-pointer text-white">
           Crear Producto
-        </Link>
+        </button>
       </div>
       <form>
         <input className="w-full focus:border-[#00CC00] outline-none ring-1 ring-[#00CC00] bg-[#F0F2F4] p-3 rounded-md" placeholder="Buscar Productos" />
@@ -45,23 +44,23 @@ function Productos() {
       <div class="mt-4 bg-white shadow-sm mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
 
 
-        <div class="text-sm font-medium text-center text-green-500 border-b border-gray-200 mb-4">
-          <ul class="flex flex-wrap -mb-px">
-            <li class="me-2">
-              <a href="#" onClick={() => cambiarTab(0)} className={`inline-block p-4 border-b-2 border-transparent rounded-t-lg  hover:border-gray-300  ${activeTab === 0? "dark:text-green-500 dark:border-green-500" : ''}  `}>Todos</a>
+        <div className="text-sm font-medium text-center text-green-500 border-b border-gray-200 mb-4">
+          <ul className="flex flex-wrap -mb-px">
+            <li className="me-2">
+              <a href="#" onClick={() => cambiarTab(0)} className={`inline-block p-4 border-b-2 border-transparent rounded-t-lg  hover:border-gray-300  ${activeTab === 0 ? "dark:text-green-500 dark:border-green-500" : ''}  `}>Todos</a>
             </li>
-            <li class="me-2">
-              <a href="#" onClick={() => cambiarTab(1)}  className={`inline-block p-4 border-b-2 border-transparent rounded-t-lg  hover:border-gray-300  ${activeTab === 1? "dark:text-green-500 dark:border-green-500" : ''}  `} aria-current="page">Activos</a>
+            <li className="me-2">
+              <a href="#" onClick={() => cambiarTab(1)} className={`inline-block p-4 border-b-2 border-transparent rounded-t-lg  hover:border-gray-300  ${activeTab === 1 ? "dark:text-green-500 dark:border-green-500" : ''}  `} aria-current="page">Activos</a>
             </li>
-            <li class="me-2">
-              <a href="#" onClick={() => cambiarTab(2)}  className={`inline-block p-4 border-b-2 border-transparent rounded-t-lg  hover:border-gray-300  ${activeTab === 2? "dark:text-green-500 dark:border-green-500" : ''}  `}>Inactivos</a>
+            <li className="me-2">
+              <a href="#" onClick={() => cambiarTab(2)} className={`inline-block p-4 border-b-2 border-transparent rounded-t-lg  hover:border-gray-300  ${activeTab === 2 ? "dark:text-green-500 dark:border-green-500" : ''}  `}>Inactivos</a>
             </li>
 
           </ul>
           {
-            activeTab === 0 && <TablaProducts products={products} title="Todos los productos"/>  || 
-            activeTab === 1 && <TablaProducts  products={products} title="Productos activos"/> || 
-            activeTab === 2 && <TablaProducts  products={products} title="Productos Inactivos"/>
+            activeTab === 0 && <TablaProducts products={products} title="Todos los productos" /> ||
+            activeTab === 1 && <TablaProducts products={products} title="Productos activos" /> ||
+            activeTab === 2 && <TablaProducts products={products} title="Productos Inactivos" />
           }
 
 
@@ -69,6 +68,8 @@ function Productos() {
 
 
         </div>
+
+        <ModalProduct open={openModal} close={() => setOpenModal(false)} />
 
 
       </div>
