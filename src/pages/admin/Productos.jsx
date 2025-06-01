@@ -9,31 +9,48 @@ function Productos() {
   const [activeTab, setActiveTab] = useState(0)
   const [openModal, setOpenModal] = useState(false)
   const [products, setProducts] = useState([])
+  const [filteredProducts, setFilteredProducts] = useState([]);
+
   const [inputSearch, setInputSearch] = useState('')
 
   useEffect(() => {
 
     obtenerProducts()
       .then(({ data }) => {
+        setFilteredProducts(data)
         setProducts(data)
       })
       .catch(() => console.log)
   }, [])
 
 
+  let resultFilter = []
+
+  if (!inputSearch) {
+    resultFilter = products
+  } else {
+    resultFilter = products.filter(product => product.producto.toLocaleUpperCase().includes(inputSearch.toLocaleUpperCase()))
+    
+  }
+
   const cambiarTab = (pestaña) => {
 
     setActiveTab(pestaña)
   }
 
-  const onInputSearch = ({target}) => {
+  const onInputSearch = ({ target }) => {
 
-    
+
     setInputSearch(target.value)
   }
-  
-  const onSubmit = () => {
 
+  const onSubmit = (event) => {
+
+    event.preventDefault()
+
+    const searchProducts = products.filter(product => product.producto.toLocaleUpperCase().includes(inputSearch.toLocaleUpperCase()))
+    //console.log(products)
+    setProducts(searchProducts)
   }
 
 
@@ -48,10 +65,10 @@ function Productos() {
         </button>
       </div>
       <form onSubmit={onSubmit}>
-        <input className="w-full focus:border-[#00CC00] outline-none ring-1 ring-[#00CC00] bg-[#F0F2F4] p-3 rounded-md" 
-        placeholder="Buscar Productos" 
-        value={inputSearch}
-        onChange={onInputSearch}
+        <input className="w-full focus:border-[#00CC00] outline-none ring-1 ring-[#00CC00] bg-[#F0F2F4] p-3 rounded-md"
+          placeholder="Buscar Productos"
+          value={inputSearch}
+          onChange={onInputSearch}
         />
       </form>
       <div class="mt-4 bg-white shadow-sm mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
@@ -71,9 +88,9 @@ function Productos() {
 
           </ul>
           {
-            activeTab === 0 && <TablaProducts products={products} title="Todos los productos" /> ||
-            activeTab === 1 && <TablaProducts products={products} title="Productos activos" /> ||
-            activeTab === 2 && <TablaProducts products={products} title="Productos Inactivos" />
+            activeTab === 0 && <TablaProducts products={resultFilter} title="Todos los productos" /> ||
+            activeTab === 1 && <TablaProducts products={resultFilter.filter((producto) => producto.estado === true)} title="Productos activos" /> ||
+            activeTab === 2 && <TablaProducts products={resultFilter.filter((producto) => producto.estado === false)} title="Productos Inactivos" />
           }
 
 
