@@ -1,8 +1,7 @@
 import React from "react";
 
-function ModalEditProduct({ open, close }) {
+function ModalEditProduct({ open, close, _id, producto, stock, precio, estado }) {
 
-    
 
 
     if (!open) return null;
@@ -20,22 +19,32 @@ function ModalEditProduct({ open, close }) {
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
             <div className="w-full max-w-md p-6 bg-white rounded-lg shadow">
-                <h1 className="mb-4 text-xl font-bold">Editar Producto</h1>
+                <h1 className="mb-6 text-xl font-bold">Editar Producto</h1>
 
-                <div>
+                <div className="text-black/65">
                     <form className='flex flex-col gap-5'>
                         <div>
                             <label className='text-[12px]'>Nombre del Producto</label>
-                            <input type="text" className='w-full   rounded-md p-2 focus:border-[#00CC00] outline-none ring-2 ring-[#00CC00]' placeholder='Nombre del producto' />
+                            <input value={producto} type="text" className='w-full   rounded-md p-2 focus:border-[#00CC00] outline-none ring-2 ring-[#00CC00]' placeholder='Nombre del producto' />
                         </div>
                         <div >
                             <label className='text-[12px]'>Precio</label>
-                            <input type="number" className='w-full   rounded-md p-2 focus:border-[#00CC00] outline-none ring-2 ring-[#00CC00]' placeholder='Precio' />
+                            <input value={precio} type="number" 
+                            className='w-full   rounded-md p-2 focus:border-[#00CC00] outline-none ring-2 ring-[#00CC00]' placeholder='Precio' />
                         </div>
 
                         <div >
                             <label className='text-[12px]'>Cantidad</label>
-                            <input type="number" className='w-full   rounded-md p-2 focus:border-[#00CC00] outline-none ring-2 ring-[#00CC00]' placeholder='Contraseña' />
+                            <input value={stock} type="number" 
+                            className='w-full   rounded-md p-2 focus:border-[#00CC00] outline-none ring-2 ring-[#00CC00]' placeholder='Cantidad' />
+                        </div>
+
+                        <div className="flex flex-col">
+                            <label>Estado Producto:</label>
+                            <select className="p-2 border-2  rounded-md border-[#00CC00]">
+                                <option>Activo</option>
+                                <option>Inactivo</option>|
+                            </select>
                         </div>
                     </form>
                 </div>
