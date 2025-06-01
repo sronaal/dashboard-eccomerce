@@ -1,5 +1,4 @@
 import React, { useState, useEffect, } from "react";
-import { Link } from "react-router-dom";
 import TablaProducts from "../../components/product/TablaProducts";
 import { obtenerProducts } from "../../services/ProductsService";
 import ModalProduct from "../../components/product/ModalProduct";
@@ -8,7 +7,6 @@ function Productos() {
   const [activeTab, setActiveTab] = useState(0)
   const [openModal, setOpenModal] = useState(false)
   const [products, setProducts] = useState([])
-  const [filteredProducts, setFilteredProducts] = useState([]);
 
   const [inputSearch, setInputSearch] = useState('')
 
@@ -16,7 +14,6 @@ function Productos() {
 
     obtenerProducts()
       .then(({ data }) => {
-        setFilteredProducts(data)
         setProducts(data)
       })
       .catch(() => console.log)
