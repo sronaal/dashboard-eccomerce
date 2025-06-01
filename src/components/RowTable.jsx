@@ -18,8 +18,8 @@ function RowTable({ producto, stock, precio, estado }) {
             </th>
             <td className="px-6 py-4">
                 {
-                    estado === true && <span className='px-2 py-2 text-gray-100 bg-green-500'>Activo</span> ||
-                    estado === false && <span className='px-2 py-2 text-gray-100 bg-red-500'>Inactivo</span>
+                    estado === true && <span className='px-2 py-2 text-gray-100 bg-green-500 rounded-md'>Activo</span> ||
+                    estado === false && <span className='px-2 py-2 text-gray-100 bg-red-500 rounded-md'>Inactivo</span>
 
                 }
             </td>
@@ -30,7 +30,7 @@ function RowTable({ producto, stock, precio, estado }) {
             <td className="flex items-center justify-center gap-4">
 
                 <a onClick={() =>  setOpenEdit(true)} className="cursor-pointer">
-                    <AiOutlineEdit className="w-6 h-6 text-blue-600 hover:text-[#067a06]" />
+                    <AiOutlineEdit className="w-6 h-6 text-blue-600  hover:text-[#067a06]" />
                 </a>
                 <a onClick={() =>  setOpenDelete(true)} className="cursor-pointer">
                     <AiOutlineDelete className="w-6 h-6 text-red-600 hover:text-[#067a06]" />
