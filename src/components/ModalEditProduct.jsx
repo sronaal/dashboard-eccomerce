@@ -1,14 +1,13 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 
-function ModalProduct({ open, close }) {
+function ModalEditProduct({ open, close }) {
 
     
 
-    const navigate = useNavigate()
 
     if (!open) return null;
-    const crearProducto = () => {
+
+    const editarProducto = () => {
 
 
 
@@ -16,10 +15,12 @@ function ModalProduct({ open, close }) {
 
         window.location.reload()
     }
+
+    
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
             <div className="w-full max-w-md p-6 bg-white rounded-lg shadow">
-                <h1 className="mb-4 text-xl font-bold">Crear Producto</h1>
+                <h1 className="mb-4 text-xl font-bold">Editar Producto</h1>
 
                 <div>
                     <form className='flex flex-col gap-5'>
@@ -42,9 +43,9 @@ function ModalProduct({ open, close }) {
                     <button
                         type="button"
                         className="px-4 py-2 bg-[#00CC00] text-white rounded hover:bg-blue-700"
-                        onClick={crearProducto}
+                        onClick={editarProducto}
                     >
-                        Crear Producto
+                        Editar Producto
                     </button>
                     <button
                         type="button"
@@ -59,4 +60,4 @@ function ModalProduct({ open, close }) {
     );
 }
 
-export default ModalProduct;
+export default ModalEditProduct;

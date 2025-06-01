@@ -9,6 +9,7 @@ function Productos() {
   const [activeTab, setActiveTab] = useState(0)
   const [openModal, setOpenModal] = useState(false)
   const [products, setProducts] = useState([])
+  const [inputSearch, setInputSearch] = useState('')
 
   useEffect(() => {
 
@@ -25,12 +26,20 @@ function Productos() {
     setActiveTab(pestaña)
   }
 
+  const onInputSearch = ({target}) => {
 
+    
+    setInputSearch(target.value)
+  }
+  
+  const onSubmit = () => {
+
+  }
 
 
   return (
     <>
-      <div className="bg-white shadow-sm rounded-2xl mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8 flex justify-between mb-8">
+      <div className="flex justify-between px-4 py-6 mx-auto mb-8 bg-white shadow-sm rounded-2xl max-w-7xl sm:px-6 lg:px-8">
         <h1 class="text-3xl  font-bold tracking-tight text-gray-900">
           Productos
         </h1>
@@ -38,13 +47,17 @@ function Productos() {
           Crear Producto
         </button>
       </div>
-      <form>
-        <input className="w-full focus:border-[#00CC00] outline-none ring-1 ring-[#00CC00] bg-[#F0F2F4] p-3 rounded-md" placeholder="Buscar Productos" />
+      <form onSubmit={onSubmit}>
+        <input className="w-full focus:border-[#00CC00] outline-none ring-1 ring-[#00CC00] bg-[#F0F2F4] p-3 rounded-md" 
+        placeholder="Buscar Productos" 
+        value={inputSearch}
+        onChange={onInputSearch}
+        />
       </form>
       <div class="mt-4 bg-white shadow-sm mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
 
 
-        <div className="text-sm font-medium text-center text-green-500 border-b border-gray-200 mb-4">
+        <div className="mb-4 text-sm font-medium text-center text-green-500 border-b border-gray-200">
           <ul className="flex flex-wrap -mb-px">
             <li className="me-2">
               <a href="#" onClick={() => cambiarTab(0)} className={`inline-block p-4 border-b-2 border-transparent rounded-t-lg  hover:border-gray-300  ${activeTab === 0 ? "dark:text-green-500 dark:border-green-500" : ''}  `}>Todos</a>
