@@ -21,9 +21,7 @@ function App() {
             <Route path="/" element={ <LayoutAdmin/> }>
                 <Route index element={<Productos/>}></Route>
                 <Route path="ordenes" element={ <Ordenes/> } ></Route>
-                <Route path="clientes" element={ <Ordenes/> } ></Route>
                 <Route path="analisis" element={<Analytcs/>}></Route>
-
             </Route>
           </Routes>
         </BrowserRouter>
