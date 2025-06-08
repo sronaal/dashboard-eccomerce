@@ -53,7 +53,7 @@ function Productos() {
   return (
     <>
       <div className="flex justify-between px-4 py-6 mx-auto mb-8 bg-white shadow-sm rounded-2xl max-w-7xl sm:px-6 lg:px-8">
-        <h1 class="text-3xl  font-bold tracking-tight text-gray-900">
+        <h1 className="text-3xl font-bold tracking-tight text-gray-900">
           Productos
         </h1>
         <button onClick={() => setOpenModal(true)} className="w-39 bg-green-500 p-3 text-center text-[15px] rounded-lg hover:bg-[#00CC00] cursor-pointer text-white">
@@ -67,7 +67,7 @@ function Productos() {
           onChange={onInputSearch}
         />
       </form>
-      <div class="mt-4 bg-white shadow-sm mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+      <div className="px-4 py-6 mx-auto mt-4 bg-white shadow-sm max-w-7xl sm:px-6 lg:px-8">
 
 
         <div className="mb-4 text-sm font-medium text-center text-green-500 border-b border-gray-200">

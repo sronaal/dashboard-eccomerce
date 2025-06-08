@@ -7,12 +7,17 @@ export const obtenerProducts = () => {
 }
 
 
-export const crearProducto = ({producto, precio, cantidad}) => {
+export const crearProducto = ({producto, precio, stock}) => {
 
-    return axios.post('http://192.168.101.4:4001/api/product', {producto, precio, cantidad} )
+    return axios.post('http://192.168.101.4:4001/api/product', {producto, precio, stock} )
 }
 
 export const obtenerProductoId = (id) => {
 
     return axios.get(`http://192.168.101.4:4001/api/product/producto/${id}`)
+}
+
+export const eliminarProducto = (id) => {
+
+    return axios.delete(`http://192.168.101.4:4001/api/product/${id}`)
 }

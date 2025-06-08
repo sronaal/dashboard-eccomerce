@@ -27,7 +27,7 @@ export function TablaProducts({ products = [], title }) {
             </tr>
           ) : (
             products.map((product, index) => (
-              <RowTable key={index}   {...product}  />
+              <RowTable key={index}   {...product} />
             ))
           )}
         </tbody>

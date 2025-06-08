@@ -1,19 +1,25 @@
 import React from "react";
+import { eliminarProducto } from "../../services/ProductsService";
 
-function ModalDeleteProduct({ open, close }) {
+function ModalDeleteProduct({ open, close, _id }) {
 
     
 
 
     if (!open) return null;
     
-    const eliminarProducto = () => {
+    const eliminarProductos = () => {
 
+        
 
+        eliminarProducto(_id)
+        .then(({data}) => {
+            console.log(data)
+            window.location.reload( )
+        })
+        .catch(() => console.error)
 
-
-
-        window.location.reload()
+        
     }
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
@@ -25,7 +31,7 @@ function ModalDeleteProduct({ open, close }) {
                     <button
                         type="button"
                         className="px-4 py-2 text-white bg-red-600 rounded hover:bg-blue-700"
-                        onClick={eliminarProducto}
+                        onClick={eliminarProductos}
                     >
                         Aceptar
                     </button>
